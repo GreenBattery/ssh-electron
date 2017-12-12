@@ -1,0 +1,27 @@
+{
+  "name": "ssh-electron",
+  "version": "1.0.0",
+  "description": "electron-based ssh tool",
+  "main": "main.js",
+  "dependencies": {
+    "bootflat": "~2.0.4",
+    "electron": "~1.7.9",
+    "jquery": "~3.2.1",
+    "simple-ssh": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuel-allan/ssh-electron.git"
+  },
+  "author": "Samuel Allan <naclo3samuel@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/samuel-allan/ssh-electron/issues"
+  },
+  "homepage": "https://github.com/samuel-allan/ssh-electron#readme"
+}
