@@ -1,6 +1,12 @@
 ::selection {
     background: #FF5E99;
 }
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    src: local('Inconsolata regular'), local('OpenSans'), url('../fonts/Inconsolata-Regular.ttf') format('ttf');
+}
 html, body {
     width: 100%;
     height: 100%;

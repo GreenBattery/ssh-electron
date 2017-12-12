@@ -1,19 +1,30 @@
 const path = require('path');
 const url = require('url');
 const remote = require('electron').remote;
+
+const ipcRenderer = require('electron').ipcRenderer
+
 const BrowserWindow = remote.BrowserWindow;
 
-function createWindowTerminal(server, username, name)
+function createWindowTerminal(server, username, name, passwd)
 {
   let win = new BrowserWindow({ width: 800, height: 600 });
   //win.loadURL('www.google.com');
 
+
   //no menu bar
   win.setMenu(null);
+
+
+
+    win.webContents.openDevTools()
 
   // and load the index.html of the app.
 
   win.loadURL('file://' + __dirname + '/terminal.html?server=' + server + '&user=' + username + '&name=' + name);
+
+
+
   //win.loadURL("http://codepen.io/AndrewBarfield/full/qEqWMq/");
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -34,10 +45,19 @@ $(document).ready(function (){
     ssh_name = $(this).attr('ssh-name');
   });
 
-  $('#passwd_submit').click(function() {
-    var passwd = $('#pass_field').val();
-    $('#pass_field').html("");
-    createWindowTerminal(ssh_user, ssh_user, ssh_name, passwd);
+  $('#add_submit').click(function() {
+      var passwd = $('#pass_field').val();
+      ssh_user = $('#add_serv_username').val()
+      ssh_server = $('#new-server-addr').val()
+      console.log("ssh user is: " + ssh_user)
+      console.log("ssh server is: " + ssh_server)
+
+      var creds = {user: ssh_user, pass: passwd, server: ssh_server} //creds needed for connecting to server
+      ipcRenderer.sendSync('creds', creds ) //post creds to main process.
+
+      $('#pass_field').html("");
+      console.log("user wants to login")
+      //createWindowTerminal(ssh_server, ssh_user, ssh_name, passwd);
   });
 
   $('#clear_passwd').click(function() {
@@ -54,6 +74,10 @@ $(document).ready(function (){
 
   });
 
+    $('#connect-server-btn').click(function() {
+        $('#connect-server-modal').modal();
+
+    });
 });
 
 // Or load a local HTML file
