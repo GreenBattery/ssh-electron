@@ -37,6 +37,9 @@ function createWindowTerminal(server, username, name, passwd)
 var ssh_server = "";
 var ssh_user = "";
 var ssh_name = "";
+var ssh_pass = "";
+var ssh_port = 22;
+
 $(document).ready(function (){
   $('[name=run-terminal]').click(function(event) {
     $('#myModal').modal();
@@ -46,17 +49,18 @@ $(document).ready(function (){
   });
 
   $('#add_submit').click(function() {
-      var passwd = $('#pass_field').val();
+      ssh_pass = $('#new-server-pass').val();
+      console.log("captured pass: " + ssh_pass)
       ssh_user = $('#add_serv_username').val()
       ssh_server = $('#new-server-addr').val()
+      ssh_port = parseInt($('#new-server-port').val())
       console.log("ssh user is: " + ssh_user)
       console.log("ssh server is: " + ssh_server)
 
-      var creds = {user: ssh_user, pass: passwd, server: ssh_server} //creds needed for connecting to server
+      var creds = {user: ssh_user, pass: ssh_pass, server: ssh_server, port: ssh_port} //creds needed for connecting to server
       ipcRenderer.sendSync('creds', creds ) //post creds to main process.
 
-      $('#pass_field').html("");
-      console.log("user wants to login")
+      //$('#pass_field').html("");
       //createWindowTerminal(ssh_server, ssh_user, ssh_name, passwd);
   });
 

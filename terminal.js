@@ -15,7 +15,7 @@ ipcRenderer.on('start-session', function (event, args) {
     //console.log(args);
     creds = args //set variable and
 
-    creds.pass = "root" //capture this cred from an input field instead.
+    //creds.pass = "root" //capture this cred from an input field instead.
 
 
 
@@ -37,7 +37,7 @@ ipcRenderer.on('start-session', function (event, args) {
 
 
         conn.shell(tty, function(err, stream) {
-            console.log(tty)
+            //console.log(tty)
             if (err) throw err;
             stream.on('close', function() {
                 console.log('Stream :: closed');
