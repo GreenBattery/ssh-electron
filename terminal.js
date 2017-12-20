@@ -61,6 +61,12 @@ ipcRenderer.on('start-session', function (event, args) {
                 console.log("title changed")
                 console.log(title)
             })
+
+            term.on('resize', function(size) {
+                console.log("terminal resized to: " + size.cols + "x" + size.rows)
+                console.log(size)
+                stream.setWindow(size.rows, size.cols, size.height, size.width)
+            })
         });
     }).connect({
         host: creds.server,
@@ -97,9 +103,6 @@ $(function() {
 
 function updateTermSize() {
     var b = $("body")
-    var c = $('#container')
-    c.height(b.height())
-    c.width(b.width())
 
     c = $("#terminal")
     c.height(b.height())
