@@ -48,9 +48,13 @@ $(document).ready(function (){
     ssh_name = $(this).attr('ssh-name');
   });
 
+
+  /* called when the add server button is clicked */
   $('#add_submit').click(function() {
+
+       
       ssh_pass = $('#new-server-pass').val();
-      console.log("captured pass: " + ssh_pass)
+
       ssh_user = $('#add_serv_username').val()
       ssh_server = $('#new-server-addr').val()
       ssh_port = parseInt($('#new-server-port').val())
