@@ -7,7 +7,8 @@
     "bootflat": "~2.0.4",
     "electron": "~1.7.9",
     "jquery": "~3.2.1",
-    "ssh2": "~0.5.5"
+    "ssh2": "~0.5.5",
+    "xterm": "~2.9.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/samuel-allan/ssh-electron.git"
+    "url": "git+https://github.com/nucc1/ssh-electron.git"
   },
-  "author": "Samuel Allan <naclo3samuel@gmail.com>",
+  "author": "nucc1, forked from git+https://github.com/samuel-allan/ssh-electron.git",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/samuel-allan/ssh-electron/issues"
+    "url": "https://github.com/nucc1/ssh-electron/issues"
   },
-  "homepage": "https://github.com/samuel-allan/ssh-electron#readme"
+  "homepage": "https://github.com/nucc1/ssh-electron#readme"
 }

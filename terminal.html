@@ -2,15 +2,23 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <title id="console-name">HTML5 Web Terminal___</title>
-    <link rel="stylesheet" type="text/css" href="css/terminal.css" />
+    <title id="console-name">HTML5 Web Terminal</title>
+   <!-- <link rel="stylesheet" type="text/css" href="css/terminal.css" /> -->
+    <script src="node_modules/xterm/dist/xterm.js"></script>
+
+    <link rel="stylesheet" href="node_modules/xterm/dist/xterm.css" />
 </head>
 <body>
 <div id="container">
-    <output></output>
+    <div id="terminal"></div>
+
+
+
+<!--    <output></output>
     <div id="input-line" class="input-line">
         <div class="prompt"></div><div><input class="cmdline" autofocus /></div>
-    </div>
+    </div> -->
+
 </div>
 
 <!--<script src="http://www.codehelper.io/api/ips/?js"></script>-->
