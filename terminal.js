@@ -1,6 +1,7 @@
 var client = require('ssh2').Client
-var xterm = require('xterm')
-
+var Terminal = require('xterm')
+Terminal.loadAddon('fit')
+var term = new Terminal( {cursorBlink: true}) //init terminal.
 
 
 var creds = {}
@@ -18,17 +19,22 @@ ipcRenderer.on('start-session', function (event, args) {
 
 
 
-    var term = new Terminal( {cursorBlink: true}) //init terminal.
 
-    var tc = document.getElementById('terminal')
+
+    var tc = document.getElementById('terminal') //don't use jquery.
+
+
 
     term.open(tc, {focus: true}) // open terminal.
+
+    term.fit()
 
     var tty = {rows: 24, cols: 80, height: 600, width: 800, term: "vt100"}
     //init ssh interactive session.
     conn = new sshClient()
     conn.on('ready', function() {
         console.log('shell is ready');
+
 
         conn.shell(tty, function(err, stream) {
             console.log(tty)
@@ -50,6 +56,11 @@ ipcRenderer.on('start-session', function (event, args) {
             term.on('data', function(data){
                 stream.write(data)
             })
+
+            term.on('title', function(title) {
+                console.log("title changed")
+                console.log(title)
+            })
         });
     }).connect({
         host: creds.server,
@@ -70,3 +81,27 @@ ipcRenderer.on('start-session', function (event, args) {
     })
 
 });
+
+window.addEventListener('resize', function(evt) {
+    //adjust terminal window size to fit.
+
+    updateTermSize()
+    term.fit()
+})
+
+//jquery ready?
+$(function() {
+
+    updateTermSize()
+})
+
+function updateTermSize() {
+    var b = $("body")
+    var c = $('#container')
+    c.height(b.height())
+    c.width(b.width())
+
+    c = $("#terminal")
+    c.height(b.height())
+    c.width(b.width())
+}
